@@ -954,6 +954,7 @@ void FrameBufferList::renderBuffer(u32 _address)
 	}
 
 	glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+	ogl.swapBuffers();
 	if (m_pCurrent != nullptr) {
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, m_pCurrent->m_FBO);
 #ifdef VC
@@ -961,7 +962,6 @@ void FrameBufferList::renderBuffer(u32 _address)
 		glDiscardFramebufferEXT(GL_FRAMEBUFFER, 1, discards);
 #endif
 	}
-	ogl.swapBuffers();
 	gDP.changed |= CHANGED_SCISSOR;
 }
 
